@@ -1,0 +1,18 @@
+{
+  "name": "Lembrete de Agua",
+  "short_name": "Agua",
+  "description": "App instalavel para acompanhar meta de agua, historico e lembretes.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#edf3fb",
+  "theme_color": "#183b6b",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lembrete de Agua</title>
+    <meta name="theme-color" content="#183b6b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Lembrete de Agua" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero-card">
+        <h1>Water</h1>
+        <p class="hero-copy">Seja o melhor amigo do seu rim</p>
+        <div class="hero-actions">
+          <button id="installButton" class="button button-secondary" type="button" hidden>Instalar app</button>
+          <button id="notifyButton" class="button button-primary" type="button">Ativar notificacoes</button>
+          <button id="testButton" class="button button-secondary" type="button">Testar lembrete</button>
+        </div>
+
+        <div class="hero-actions store-actions">
+          <button id="androidDownloadButton" class="button button-secondary" type="button">Baixar app Android</button>
+          <button id="appleDownloadButton" class="button button-secondary" type="button" disabled>Baixar app Apple</button>
+          <button id="authButton" class="button button-primary" type="button">Entrar com Google</button>
+        </div>
+
+        <div class="account-inline">
+          <strong id="accountName">Sem conta conectada</strong>
+          <span id="accountSync">Sincronizacao desativada</span>
+        </div>
+        <p id="bootStatus" class="boot-status">Inicializando app...</p>
+        <p id="actionStatus" class="action-status">Nenhum teste executado ainda.</p>
+        <p id="permissionStatus" class="permission-status"></p>
+      </section>
+
+      <section class="panel-grid">
+        <form id="settingsForm" class="panel">
+          <div class="panel-header">
+            <h2>Quanto ira beber hoje?</h2>
+          </div>
+
+          <label class="field">
+            <span>Meta diaria (ml)</span>
+            <input id="goalInput" type="number" min="100" max="10000" step="50" required />
+          </label>
+
+          <label class="field">
+            <span>Dose por clique (ml)</span>
+            <input id="amountInput" type="number" min="50" max="2000" step="50" required />
+          </label>
+
+          <label class="field">
+            <span>Mensagem personalizada</span>
+            <textarea id="messageInput" rows="3" maxlength="180" required></textarea>
+          </label>
+
+          <div class="time-grid">
+            <label class="field">
+              <span>Inicio da janela</span>
+              <input id="startInput" type="time" required />
+            </label>
+
+            <label class="field">
+              <span>Fim da janela</span>
+              <input id="endInput" type="time" required />
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Intervalo entre lembretes (min)</span>
+            <input id="intervalInput" type="number" min="1" max="1440" step="1" required />
+          </label>
+
+          <div class="panel-actions">
+            <button class="button button-primary" type="submit">Salvar configuracao</button>
+            <button id="resetSettingsButton" class="button button-secondary" type="button">Restaurar padrao</button>
+          </div>
+        </form>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h2>Progresso de hoje</h2>
+          </div>
+
+          <div class="metric-row">
+            <div>
+              <p class="metric-label">Consumido</p>
+              <p id="consumedValue" class="metric-value">0 ml</p>
+            </div>
+            <div>
+              <p class="metric-label">Restante</p>
+              <p id="remainingValue" class="metric-value">0 ml</p>
+            </div>
+          </div>
+
+          <div class="progress-track" aria-hidden="true">
+            <div id="progressBar" class="progress-fill"></div>
+          </div>
+          <p id="progressText" class="progress-text">0%</p>
+
+          <div class="panel-actions">
+            <button id="drinkButton" class="button button-primary" type="button">Registrar agua</button>
+            <button id="resetDayButton" class="button button-secondary" type="button">Zerar dia</button>
+          </div>
+
+          <div class="status-list">
+            <div>
+              <span class="status-label">Janela atual</span>
+              <strong id="windowValue">-</strong>
+            </div>
+            <div>
+              <span class="status-label">Proximo lembrete</span>
+              <strong id="nextReminderValue">Calculando...</strong>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="analytics-grid">
+        <section class="panel analytics-panel analytics-panel-wide">
+          <div class="panel-header">
+            <div>
+              <h2>Analytics</h2>
+            </div>
+          </div>
+          <div class="filters analytics-filters">
+            <select id="viewModeSelect" class="select-input">
+              <option value="daily">Diario</option>
+              <option value="weekly">Semanal</option>
+              <option value="monthly">Mes</option>
+              <option value="yearly">Ano</option>
+            </select>
+            <input id="anchorDateInput" class="select-input" type="date" />
+          </div>
+
+          <div class="summary-grid">
+            <article class="summary-card">
+              <span class="summary-label">Periodo</span>
+              <strong id="summaryPeriod">-</strong>
+            </article>
+            <article class="summary-card">
+              <span class="summary-label">Meta acumulada</span>
+              <strong id="summaryGoal">0 ml</strong>
+            </article>
+            <article class="summary-card">
+              <span class="summary-label">Realizado</span>
+              <strong id="summaryActual">0 ml</strong>
+            </article>
+            <article class="summary-card">
+              <span class="summary-label">Aderencia</span>
+              <strong id="summaryRate">0%</strong>
+            </article>
+          </div>
+
+          <div class="chart-block">
+            <div class="chart-header">
+              <h3>Grafico de barras</h3>
+              <p>Comparacao por periodo</p>
+            </div>
+            <div class="chart-legend" aria-label="Legenda do grafico de barras">
+              <span><i class="legend-swatch legend-goal"></i> Meta</span>
+              <span><i class="legend-swatch legend-actual"></i> Realizado</span>
+            </div>
+            <svg id="barChart" class="chart-svg" viewBox="0 0 760 280" role="img" aria-label="Grafico de barras"></svg>
+          </div>
+
+          <div class="chart-block">
+            <div class="chart-header">
+              <h3>Grafico de linhas</h3>
+              <p>Tempo versus quantidade com meta e realizado</p>
+            </div>
+            <div class="chart-legend" aria-label="Legenda do grafico de linhas">
+              <span><i class="legend-swatch legend-goal"></i> Meta</span>
+              <span><i class="legend-swatch legend-actual"></i> Realizado</span>
+            </div>
+            <svg id="lineChart" class="chart-svg" viewBox="0 0 760 280" role="img" aria-label="Grafico de linhas"></svg>
+          </div>
+        </section>
+
+        <section class="panel analytics-panel">
+          <div class="panel-header panel-header-row">
+            <div>
+              <p class="eyebrow">Calendario</p>
+              <h2>Consumo por dia</h2>
+            </div>
+            <div class="calendar-controls">
+              <button id="calendarPrevButton" class="button button-secondary button-compact" type="button">Anterior</button>
+              <button id="calendarNextButton" class="button button-secondary button-compact" type="button">Proximo</button>
+            </div>
+          </div>
+
+          <div class="calendar-head">
+            <strong id="calendarTitle">-</strong>
+          </div>
+          <div class="calendar-weekdays">
+            <span>Dom</span>
+            <span>Seg</span>
+            <span>Ter</span>
+            <span>Qua</span>
+            <span>Qui</span>
+            <span>Sex</span>
+            <span>Sab</span>
+          </div>
+          <div id="calendarGrid" class="calendar-grid"></div>
+          <div class="calendar-legend">
+            <span><i class="legend-dot legend-low"></i> Abaixo da meta</span>
+            <span><i class="legend-dot legend-good"></i> Meta batida</span>
+            <span><i class="legend-dot legend-empty"></i> Sem registro</span>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
