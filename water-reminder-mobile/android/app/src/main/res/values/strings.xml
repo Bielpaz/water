@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Water</string>
+    <string name="title_activity_main">water-reminder-mobile</string>
+    <string name="package_name">com.bielpaz.waterreminder</string>
+    <string name="custom_url_scheme">com.bielpaz.waterreminder</string>
+</resources>

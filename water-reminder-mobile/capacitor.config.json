@@ -1,6 +1,6 @@
 {
   "appId": "com.bielpaz.waterreminder",
-  "appName": "water-reminder-mobile",
+  "appName": "Water",
   "webDir": "dist",
   "plugins": {
     "FirebaseAuthentication": {

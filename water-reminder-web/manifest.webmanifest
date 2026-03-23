@@ -1,6 +1,6 @@
 {
-  "name": "Lembrete de Agua",
-  "short_name": "Agua",
+  "name": "Water",
+  "short_name": "Water",
   "description": "App instalavel para acompanhar meta de agua, historico e lembretes.",
   "start_url": "./",
   "scope": "./",

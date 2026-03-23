@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "572794555267",
+    "project_id": "water-web-db94d",
+    "storage_bucket": "water-web-db94d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572794555267:android:3f97acb26289000dcec4b6",
+        "android_client_info": {
+          "package_name": "com.bielpaz.waterreminder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "572794555267-2dvql62tlanu4b20o82aij71mkda2fbb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bielpaz.waterreminder",
+            "certificate_hash": "729f5f280cf686e05d8392558271b8386bd854ae"
+          }
+        },
+        {
+          "client_id": "572794555267-2gk8giuq8q6bf29uilhikttd6inbo4v3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBNLLL7uMfiSEwKrsun73A94Npt-4SaAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "572794555267-2gk8giuq8q6bf29uilhikttd6inbo4v3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "572794555267-39cuu3qhpsgtk1i31folpt878stssqni.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bielpaz.waterreminder"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
