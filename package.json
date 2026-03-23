@@ -1,0 +1,17 @@
+{
+  "name": "water",
+  "private": true,
+  "workspaces": [
+    "water-reminder-web",
+    "water-reminder-mobile"
+  ],
+  "scripts": {
+    "web:serve": "cd water-reminder-web && python3 -m http.server 4173",
+    "web:status": "cd water-reminder-web && git status",
+    "mobile:build": "cd water-reminder-mobile && npm run build",
+    "mobile:sync:ios": "cd water-reminder-mobile && npx cap sync ios",
+    "mobile:sync:android": "cd water-reminder-mobile && npx cap sync android",
+    "mobile:open:ios": "open -a Xcode /Users/biel/Desktop/water-reminder/water-reminder-mobile/ios/App/App.xcodeproj/project.xcworkspace",
+    "mobile:open:android": "open -a \"Android Studio\" /Users/biel/Desktop/water-reminder/water-reminder-mobile/android"
+  }
+}

@@ -1,0 +1,6 @@
+node_modules
+dist
+.capacitor
+android
+ios
+.DS_Store

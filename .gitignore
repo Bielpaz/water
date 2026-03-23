@@ -1,0 +1,15 @@
+.DS_Store
+node_modules
+dist
+build
+.gradle
+.idea
+.vscode
+*.log
+water-reminder-mobile/node_modules
+water-reminder-mobile/dist
+water-reminder-mobile/android/.gradle
+water-reminder-mobile/android/build
+water-reminder-mobile/android/app/build
+
+*.save
